@@ -18,7 +18,7 @@ yum -y update pdns*
 yum -y install pdns-recursor
 yum -y install dnsdist
 ```
-###3. Add a line
+### 4. Add a line
 ```
 nameserver 127.0.0.1
 ```
@@ -32,7 +32,7 @@ nameserver 8.8.8.8
 nameserver 8.8.4.4
 ```
 
-### 4. Your /etc/pdns/pdns.conf should look like this:
+### 5. Your /etc/pdns/pdns.conf should look like this:
 
 ```
 setuid=pdns
@@ -59,7 +59,7 @@ version-string=anonymous
 local-port=5300
 local-address=127.0.0.1
 ```
-### 5. Your /etc/pdns-recursor/recursor.conf should look like this - replace yourdomain.com with your domain name:
+### 6. Your /etc/pdns-recursor/recursor.conf should look like this - replace yourdomain.com with your domain name:
 
 ```
 local-address=127.0.0.1
@@ -70,7 +70,7 @@ setgid=pdns-recursor
 setuid=pdns-recursor
 version-string=none
 ```
-### 6. Your /etc/dnsdist/dnsdist.conf file should look like this:
+### 7. Your /etc/dnsdist/dnsdist.conf file should look like this:
 
 ```
 setLocal('0.0.0.0')
@@ -87,7 +87,7 @@ recursive_ips:addMask('0.0.0.0/0') -- These network masks are the ones from allo
 addAction(NetmaskGroupRule(recursive_ips), PoolAction('recursor'))
 addAction(AllRule(), PoolAction('auth'))
 ```
-### 7. Restart everything:
+### 8. Restart everything:
 
 ```
 systemctl restart pdns 
@@ -95,7 +95,7 @@ systemctl restart pdns-recursor
 systemctl restart dnsdist 
 ```
 
-### 8. Check if your local or Internet domains are working well from your local DNS server:
+### 9. Check if your local or Internet domains are working well from your local DNS server:
 
 ```
 nslookup google.com
@@ -107,6 +107,6 @@ Name:   google.com
 Address: 172.217.20.174
 ```
 
-### 9. Verify if DNS server is working fine on https://intodns.com/
+### 10. Verify if DNS server is working fine on https://intodns.com/
 
-###Done !
+### Done !
